@@ -26,7 +26,7 @@ import com.google.gson.stream.JsonReader;
 import com.fasterxml.jackson.core.TreeCodec.*;
 import com.fasterxml.jackson.core.ObjectCodec.*;
 import com.fasterxml.jackson.databind.*;
-public class NewTest {
+public class APITest {
 	
 	@DataProvider (name = "TestCasesProvider")
 	public Object[][] ProviderMethod(){
@@ -53,18 +53,18 @@ public class NewTest {
 	@Test (dataProvider = "TestCasesProvider")
   public void APITesting(Object expectedResBody, Object requestBody, Object requestType, Object route, Object expectedStatusCode) throws JsonIOException, JsonSyntaxException, IOException {
 		RequestTest requestTest;
-		requestType = requestType.toString().replaceAll("\"","");
+		String httpMetod = requestType.toString().replaceAll("\"","");
 		RequestTest test = null;
-		if(requestType == "POST") {
+		
+		if(httpMetod.compareTo("POST") == 0) {
 			test = new PostRequestTest (route.toString(), requestBody.toString(), expectedResBody.toString(), expectedStatusCode.toString());
 		}
-		else if (requestType == "DELETE") {
-			test = new DeleteRequestTest(route.toString(), requestBody.toString(), expectedResBody.toString(), expectedStatusCode.toString());
+		else if (httpMetod.compareTo("DELETE") == 0) {
+			test = new DeleteRequestTest(route.toString(), requestBody.toString(), expectedStatusCode.toString());
 		} 
-		else if (requestType == "PUT") {
+		else if (httpMetod.compareTo("PUT") == 0) {
 			test = new PutRequestTest(route.toString(), requestBody.toString(), expectedResBody.toString(), expectedStatusCode.toString());
-		}
-		if(test != null)
-			assertTrue(test.getTestStatus());
+		} 
+		assertTrue(test.getTestStatus());
 }
 }

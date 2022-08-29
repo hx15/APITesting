@@ -10,7 +10,7 @@ public class DeleteRequestTest extends RequestTest{
 	int responseCode;
 	String responseBody;
 	boolean testStatus = true;
-	public DeleteRequestTest(String route, String requestBody, String expectedResponseBody, String expectedStatusCode) {
+	public DeleteRequestTest(String route, String requestBody, String expectedStatusCode) {
 		RestAssured.baseURI = "https://jsonplaceholder.typicode.com" + route.replaceAll("\"", ""); 
 		Response response = RestAssured.delete(RestAssured.baseURI); 
 		ResponseBody body = response.getBody();
