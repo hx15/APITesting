@@ -5,7 +5,9 @@ import io.restassured.*;
 import io.restassured.response.Response;
 import io.restassured.response.ResponseBody;
 import io.restassured.specification.RequestSpecification;
+import utils.DeleteRequestTest;
 import utils.PostRequestTest;
+import utils.PutRequestTest;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -13,7 +15,7 @@ import java.io.IOException;
 import java.io.Reader;
 import java.nio.file.Paths;
 import java.util.Map;
-import utils.PostRequestTest;
+import utils.RequestTest;
 import org.testng.annotations.*;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Optional;
@@ -26,10 +28,6 @@ import com.fasterxml.jackson.core.ObjectCodec.*;
 import com.fasterxml.jackson.databind.*;
 public class NewTest {
 	
-	@BeforeClass
-	public static void Initialize() {
-		RestAssured.baseURI = "https://jsonplaceholder.typicode.com";
-	}
 	@DataProvider (name = "TestCasesProvider")
 	public Object[][] ProviderMethod(){
 		Object[][] res;
@@ -54,7 +52,19 @@ public class NewTest {
 	}
 	@Test (dataProvider = "TestCasesProvider")
   public void APITesting(Object expectedResBody, Object requestBody, Object requestType, Object route, Object expectedStatusCode) throws JsonIOException, JsonSyntaxException, IOException {
-		PostRequestTest postTest = new PostRequestTest (route.toString(), requestBody.toString(), expectedResBody.toString(), expectedStatusCode.toString());
-		assertTrue(postTest.getTestStatus());
-  }
+		RequestTest requestTest;
+		requestType = requestType.toString().replaceAll("\"","");
+		RequestTest test = null;
+		if(requestType == "POST") {
+			test = new PostRequestTest (route.toString(), requestBody.toString(), expectedResBody.toString(), expectedStatusCode.toString());
+		}
+		else if (requestType == "DELETE") {
+			test = new DeleteRequestTest(route.toString(), requestBody.toString(), expectedResBody.toString(), expectedStatusCode.toString());
+		} 
+		else if (requestType == "PUT") {
+			test = new PutRequestTest(route.toString(), requestBody.toString(), expectedResBody.toString(), expectedStatusCode.toString());
+		}
+		if(test != null)
+			assertTrue(test.getTestStatus());
+}
 }

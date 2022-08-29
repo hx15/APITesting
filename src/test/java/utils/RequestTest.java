@@ -1,5 +1,5 @@
 package utils;
 
-interface RequestTest {
-	Boolean getTestStatus();
+public abstract class RequestTest {
+	public abstract Boolean getTestStatus();
 }

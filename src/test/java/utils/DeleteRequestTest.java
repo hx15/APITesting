@@ -6,7 +6,7 @@ import io.restassured.response.Response;
 import io.restassured.response.ResponseBody;
 import io.restassured.specification.RequestSpecification;
 import io.restassured.internal.path.json.JsonPrettifier;
-public class DeleteRequestTest implements RequestTest{
+public class DeleteRequestTest extends RequestTest{
 	int responseCode;
 	String responseBody;
 	boolean testStatus = true;
