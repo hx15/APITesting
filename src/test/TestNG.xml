@@ -2,8 +2,7 @@
 
 <test name="API_TESTS">
 	<classes>
-		<class name="APITest"> 
-		
+		<class name="DataProviderAPITest"> 
 		</class>
 	</classes>
 </test>

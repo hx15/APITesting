@@ -26,7 +26,7 @@ import com.google.gson.stream.JsonReader;
 import com.fasterxml.jackson.core.TreeCodec.*;
 import com.fasterxml.jackson.core.ObjectCodec.*;
 import com.fasterxml.jackson.databind.*;
-public class APITest {
+public class DataProviderAPITest {
 	
 	@DataProvider (name = "TestCasesProvider")
 	public Object[][] ProviderMethod(){

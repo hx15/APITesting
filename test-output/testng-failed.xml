@@ -5,7 +5,6 @@
     <classes>
       <class name="NewTest">
         <methods>
-          <include name="Initialize"/>
           <include name="APITesting" invocation-numbers="0 1"/>
         </methods>
       </class> <!-- NewTest -->
