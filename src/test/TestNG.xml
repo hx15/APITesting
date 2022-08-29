@@ -1,0 +1,11 @@
+<suite name="APISuite">
+
+<test name="TestWithParams3">
+	<classes>
+		<class name="pkgTest.numberTest">
+		/</class>
+	</classes>
+</test>
+
+
+</suite>
